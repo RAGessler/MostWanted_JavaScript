@@ -241,3 +241,4 @@ function findPersonDescendants(person, people){
         return`${element.firstName} ${element.lastName}\n`
     })
 }
+//end of findPersonDescendants()
