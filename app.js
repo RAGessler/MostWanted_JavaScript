@@ -64,8 +64,6 @@ function mainMenu(person, people) {
     // Routes our application based on the user's input
     switch (displayOption) {
         case "info":
-            //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
-            // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
@@ -192,3 +190,54 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+function findPersonFamily(person, people){
+    let parentsList = people.filter(function(element){
+        if (person.parents.includes(element.id)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let siblingList = people.filter(function(element){
+        if (element.parents.includes(person.parents)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let spouse = people.filter(function(element){
+        if (element.id === (person.currentSpouse)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    let familyMemebers = spouse.map(function(element){
+        return `${element.firstName} ${element.lastName} -Spouse\n`
+    })
+    familyMemebers.push(siblingList.map(function(element){
+        return `${element.firstName} ${element.lastName} -Sibling\n`
+    }))
+    familyMemebers.push(parentsList.map(function(element){
+        return `${element.firstName} ${element.lastName} -Parent\n`
+    }))
+    return familyMemebers
+}
+//End of findPersonFamily()
+
+function findPersonDescendants(person, people){
+    let descendants = people.filter(function(element){
+        if (element.parents.includes(person.id)){
+            return true;
+        }
+        else{
+            return false
+        }
+    })
+    return descendants.map(function(element){
+        return`${element.firstName} ${element.lastName}\n`
+    })
+}
