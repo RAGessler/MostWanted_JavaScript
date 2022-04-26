@@ -227,7 +227,6 @@ function findPersonFamily(person, people){
     return familyMemebers
 }
 //End of findPersonFamily()
-
 function findPersonDescendants(person, people){
     let children = []
     children = people.filter(function(element){
@@ -239,7 +238,7 @@ function findPersonDescendants(person, people){
         }
     })
     let grandChildren = people.filter(function(element){
-        if (element.parents.includes(children)){
+        if (element.parents.includes(children.forEach.id)){
             return true;
         }
         else{
