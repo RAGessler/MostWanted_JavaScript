@@ -256,6 +256,14 @@ function findPersonDescendants(person, people){
 //end of findPersonDescendants()
 
 //search by traits
+function createTraitList(numberOfLoops){
+    let traitsList = []
+    for (let i = 0; i < numberOfLoops; i++) {
+    traitsList.push(prompt(`Please enter trait ${numberOfLoops} `))
+    }
+    return traitsList
+}
+
 function searchByTraits(people){
    let functionSelector = prompt('would you like to search for a single trait or multiple traits? type "single" or "multiple" ')
    functionSelector.toLowerCase()
@@ -263,14 +271,19 @@ function searchByTraits(people){
        return searchByTrait(people)
    }
    else if (functionSelector === "multiple"){
-       alert('You may pick up to 5 traits')
-       let traitList = prompt('Please enter trait One')
-       traitList.push(prompt('Please enter trait Two'))
-       traitList.push(prompt('Please enter trait Three'))
-       traitList.push(prompt('Please enter trait Four'))
-       traitList.push(prompt('Please enter trait Five'))
-       
+       let numberOfTraits = parseInt(prompt('Enter the amount of traits you would like to search by up to 5:'))
+       let traitsList = createTraitList(numberOfTraits)
+       console.log(traitsList)
+       let peopleWithTrait = people.filter(function(element){
+           if (traitsList.includes(element)){
+               return true;
+           }
+           else{
+               return false;
+           }})
+           return peopleWithTrait
    }
+   return pickFromPrompt(peopleWithTrait)
 }
 function pickFromPrompt(people) {
     let selectedPerson = prompt('Type the first name of the person youre looking for from options:\n' +
