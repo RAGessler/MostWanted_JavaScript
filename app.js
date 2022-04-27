@@ -315,7 +315,7 @@ function filterMenu(people){
 return pickFromPrompt(returnList)
 }
 function pickFromPrompt(people) {
-    let selectedPerson = prompt('Type the first name of the person youre looking for from options:\n' +
+    let selectedPerson = prompt('Type the first name of the person youre looking for from options:\n  If empty, No person was found.' +
         people.map(function(person) {
             return `${person.firstName} ${person.lastName}`;
             })
