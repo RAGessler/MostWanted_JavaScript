@@ -254,3 +254,56 @@ function findPersonDescendants(person, people){
     })
 }
 //end of findPersonDescendants()
+
+//search by traits
+function searchByTraits(people){
+   let functionSelector = prompt('would you like to search for a single trait or multiple traits? type "single" or "multiple" ')
+   functionSelector.toLowerCase()
+   if (functionSelector === 'single'){
+       return searchByTrait(people)
+   }
+   else if (functionSelector === "multiple"){
+       alert('You may pick up to 5 traits')
+       let traitList = prompt('Please enter trait One')
+       traitList.push(prompt('Please enter trait Two'))
+       traitList.push(prompt('Please enter trait Three'))
+       traitList.push(prompt('Please enter trait Four'))
+       traitList.push(prompt('Please enter trait Five'))
+       
+   }
+}
+function pickFromPrompt(people) {
+    let selectedPerson = prompt('Type the first name of the person youre looking for from options:\n' +
+        people.map(function(person) {
+            return `${person.firstName} ${person.lastName}`;
+            })
+            .join("\n")
+    );
+    return people.filter(function(element){
+        if (element.firstName === selectedPerson){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+}
+
+function searchByTrait(people){
+    let searchTrait = prompt('Please input a trait you would like to search by:')
+    searchTrait.toLowerCase()
+    let peopleWithTrait = people.filter(function(element){
+        if (element.gender === searchTrait || 
+        element.dob === searchTrait ||
+        element.height === searchTrait ||
+        element.weight === searchTrait ||
+        element.eyeColor === searchTrait ||
+        element.occupation === searchTrait){
+            return true;
+        }
+        else{
+            return false;
+        }
+    })
+    return pickFromPrompt(peopleWithTrait);
+}
