@@ -251,7 +251,7 @@ function findPersonDescendants(person, people){
     let descendants = children.concat(grandChildren)
     return descendants.map(function(element){
         return`${element.firstName} ${element.lastName}\n`
-    })
+    }).join('')
 }
 //end of findPersonDescendants()
 
