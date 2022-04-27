@@ -272,6 +272,10 @@ function searchByTraits(people){
     else if (functionSelector === "multiple"){
         return filterMenu(people)
     }
+    else{
+        alert('Invalid input, please try again')
+        return searchByTraits(people)
+    }
 }
 function filterMenu(people){
     let returnList = people
