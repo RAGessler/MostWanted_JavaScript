@@ -238,7 +238,7 @@ function findPersonDescendants(person, people){
             return false
         }
     })
-    children.forEach(function(child){
+    children.forEach(function(child){grandChildren = (
         people.filter(function(element){
             if (element.parents.includes(child.id)){
                 return true;
@@ -247,7 +247,7 @@ function findPersonDescendants(person, people){
                 return false;
             }
         })
-    })
+    )})
     let descendants = children.concat(grandChildren)
     return descendants.map(function(element){
         return`${element.firstName} ${element.lastName}\n`
