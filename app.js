@@ -224,7 +224,7 @@ function findPersonFamily(person, people){
     familyMemebers.push(parentsList.map(function(element){
         return `${element.firstName} ${element.lastName} -Parent\n`
     }))
-    return familyMemebers.join(' ')
+    return familyMemebers.join('')
 }
 //End of findPersonFamily()
 function findPersonDescendants(person, people){
