@@ -263,27 +263,52 @@ function createTraitList(numberOfLoops){
     }
     return traitsList
 }
-
 function searchByTraits(people){
-   let functionSelector = prompt('would you like to search for a single trait or multiple traits? type "single" or "multiple" ')
-   functionSelector.toLowerCase()
-   if (functionSelector === 'single'){
-       return searchByTrait(people)
-   }
-   else if (functionSelector === "multiple"){
-       let numberOfTraits = parseInt(prompt('Enter the amount of traits you would like to search by up to 5:'))
-       let traitsList = createTraitList(numberOfTraits)
-       console.log(traitsList)
-       let peopleWithTrait = people.filter(function(element){
-           if (traitsList.includes(element.eyeColor)){
-               return true;
-           }
-           else{
-               return false;
-           }})
-           return pickFromPrompt(peopleWithTrait)
-   }
-   return peopleWithTrait
+    let functionSelector = prompt('would you like to search for a single trait or multiple traits? type "single" or "multiple" ')
+    functionSelector.toLowerCase()
+    if (functionSelector === 'single'){
+        return searchByTrait(people)
+    }
+    else if (functionSelector === "multiple"){
+        return filterMenu(people)
+    }
+}
+function filterMenu(people){
+    let returnList = people
+    let keepFiltering = true
+    let counter = 0
+    while (keepFiltering === true) {
+    let filterPrompt = prompt('Filtering by multiple properties, \n Please select which property you would like to filter by one at a time\n Options: "gender", "height", "weight", "eye color", "occupation" "submit"')
+    switch (filterPrompt) {
+        case 'occupation':
+    
+            returnList = filterOccupation(returnList)
+            break;
+        case 'gender':
+    
+            returnList = filterGender(returnList)
+            break;
+        case 'height':
+    
+            returnList = filterHeight(returnList)
+            break;
+        case 'weight':
+    
+            returnList = filterWeight(returnList)
+            break;
+        case 'eye color':
+    
+            returnList = filterEyeColor(returnList)
+            break;
+        case 'submit':
+            keepFiltering = false
+            break;
+            
+        default:
+            break;
+    }  
+}
+return pickFromPrompt(returnList)
 }
 function pickFromPrompt(people) {
     let selectedPerson = prompt('Type the first name of the person youre looking for from options:\n' +
@@ -301,7 +326,61 @@ function pickFromPrompt(people) {
         }
     })
 }
-
+function filterGender(objectList){
+let eyeGenderInput = prompt('Input Gender').toLowerCase()
+let filteredList = objectList.filter(function(element){
+    if (element.gender === eyeGenderInput){
+        return true;
+    }
+    else{
+        return false;
+    }})
+    return filteredList
+}
+function filterHeight(objectList){
+let heightInput = prompt('Input Height').toLowerCase()
+let filteredList = objectList.filter(function(element){
+    if (element.height == heightInput){
+        return true;
+    }
+    else{
+        return false;
+    }})
+    return filteredList
+}
+function filterWeight(objectList){
+let weightInput = prompt('Input Weight').toLowerCase()
+let filteredList = objectList.filter(function(element){
+    if (element.weight == weightInput){
+        return true;
+    }
+    else{
+        return false;
+    }})
+    return filteredList
+}
+function filterEyeColor(objectList){
+let eyeColorInput = prompt('Input Eye Color').toLowerCase()
+let filteredList = objectList.filter(function(element){
+    if (element.eyeColor === eyeColorInput){
+        return true;
+    }
+    else{
+        return false;
+    }})
+    return filteredList
+}
+function filterOccupation(objectList){
+let occupationInput = prompt('Input Occupation').toLowerCase()
+let filteredList = objectList.filter(function(element){
+    if (element.occupation === occupationInput){
+        return true;
+    }
+    else{
+        return false;
+    }})
+    return filteredList
+}
 function searchByTrait(people){
     let searchTrait = prompt('Please input a trait you would like to search by:')
     searchTrait.toLowerCase()
