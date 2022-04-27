@@ -275,15 +275,15 @@ function searchByTraits(people){
        let traitsList = createTraitList(numberOfTraits)
        console.log(traitsList)
        let peopleWithTrait = people.filter(function(element){
-           if (traitsList.includes(element)){
+           if (traitsList.includes(element.eyeColor)){
                return true;
            }
            else{
                return false;
            }})
-           return peopleWithTrait
+           return pickFromPrompt(peopleWithTrait)
    }
-   return pickFromPrompt(peopleWithTrait)
+   return peopleWithTrait
 }
 function pickFromPrompt(people) {
     let selectedPerson = prompt('Type the first name of the person youre looking for from options:\n' +
